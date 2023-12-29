@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+//import Modal from "./components/Modal";
 const tasks=[
   {
     id: 4,
@@ -40,7 +40,7 @@ return this.setStatus({viewCompleted:false});
 
 }
 
-}
+
 
 renderTableList = () =>{
   return(
@@ -60,12 +60,45 @@ renderTableList = () =>{
       </div>
   )
 }
-
+//render items in list (completed)
 renderItems = ()=>{
   const{viewCompleted} = this.state;
+  const newItems = this.state.taskList.filter(
+    item => item.completed==viewCompleted
+  );
+};
+
+render(){
+  return(
+    <main className="content">
+        <h1 className="text-black text-uppercase text-center my-4">Task Manager</h1>
+        <div className="row ">
+          <div className="col-md-6 col-sm-10 mx-auto p-0">
+            <div className="card p-3">
+              <div className="">
+                <button onClick={this.createItem} className="btn btn-primary">
+                  Add task
+                    </button>
+              </div>
+              {this.renderTabList()}
+              <ul className="list-group list-group-flush">
+                {this.renderItems()}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {/* {this.state.modal ? (
+          <Modal
+            activeItem={this.state.activeItem}
+            toggle={this.toggle}
+            onSave={this.handleSubmit}
+          />
+        ) : null} */}
+      </main>
+  )
 }
 
-
+}
 
 
 // function App() {
